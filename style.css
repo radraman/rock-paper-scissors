@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400&family=Silkscreen:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto Mono", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f34336;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.main-box {
+  width: 500px;
+  height: 70vh;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.title {
+  font-family: "Silkscreen", Impact, Haettenschweiler, "Arial Narrow Bold",
+    sans-serif;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.weapons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+#rock,
+#paper,
+#scissors {
+  width: 20%;
+  height: auto;
+  background-color: #f34336;
+  padding: 20px;
+  border-radius: 50%;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  transition: all 0.1s;
+}
+
+#rock:hover,
+#paper:hover,
+#scissors:hover {
+  background-color: #ee7168;
+}
+
+.rock-img {
+  width: 50px;
+  height: auto;
+}
+
+.choice-display {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0 20px 0;
+}
+
+.round-result {
+  display: flex;
+  justify-content: center;
+}
+
+.score {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.display {
+  font-size: 17px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}

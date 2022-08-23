@@ -1,58 +1,63 @@
 // Rock, Paper, Scissors game assignment for The Odin Project by Radraman.
 
-const gameOptions = ["Rock", "Paper", "Scissors"];
+//Let's declare all the variables
+const computerChoiceDsiplay = document.getElementById("computer-choice");
+const userChoiceDisplay = document.getElementById("user-choice");
+const resultDisplay = document.getElementById("result");
+const possibleChoices = document.querySelectorAll("button");
+const userScoreDisplay = document.getElementById("user-score");
+const computerScoreDisplay = document.getElementById("computer-score");
+let userChoice;
+let computerChoice;
+let result;
 let playerScore = 0;
 let computerScore = 0;
 
-//Lets get the computer to select its choice.
+//Get a choice from the user.
+
+possibleChoices.forEach((possibleChoice) =>
+  possibleChoice.addEventListener("click", (e) => {
+    userChoice = e.target.id;
+    userChoiceDisplay.textContent = userChoice;
+    getComputerChoice();
+    getResult();
+  })
+);
+
+//Get a choice from the computer.
 function getComputerChoice() {
-  let index = Math.floor(Math.random() * 3);
-  return gameOptions[index];
+  const randNum = Math.floor(Math.random() * possibleChoices.length);
+
+  if (randNum === 0) computerChoice = "rock";
+  else if (randNum === 1) computerChoice = "paper";
+  else computerChoice = "scissors";
+
+  computerChoiceDsiplay.textContent = computerChoice;
 }
 
-//Game logic and score distribution
-function playRound(playerSelection, computerSelection) {
-  if (playerSelection === computerSelection) return "Its a tie";
-  else if (playerSelection === "Rock" && computerSelection === "Paper") {
+//Game Logic and score distribution.
+function getResult() {
+  if (userChoice === computerChoice) result = "Draw.";
+  if (userChoice === "rock" && computerChoice === "paper") {
     computerScore += 1;
-    return "You Lose! Paper beats Rock";
-  } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
+    result = "You Lose! Paper beats Rock.";
+  } else if (userChoice === "rock" && computerChoice === "scissors") {
     playerScore += 1;
-    return "You Won! Rock beats Scissors";
-  } else if (playerSelection === "Paper" && computerSelection === "Scissors") {
+    result = "You Won! Rock beats Scissors";
+  } else if (userChoice === "paper" && computerChoice === "rock") {
+    playerScore += 1;
+    result = "You Won! Paper beats Rock";
+  } else if (userChoice === "paper" && computerChoice === "scissors") {
     computerScore += 1;
-    return "You Lose! Scissors beats Paper";
-  } else if (playerSelection === "Paper" && computerSelection === "Rock") {
+    result = "You Lose! Scissors beats Paper";
+  } else if (userChoice === "scissors" && computerChoice === "paper") {
     playerScore += 1;
-    return "You Won! Paper beats Rock";
-  } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
+    result = "You Won! Scissors beats Paper";
+  } else if (userChoice === "scissors" && computerChoice === "rock") {
     computerScore += 1;
-    return "You Lose! Rock beats Scissors";
-  } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
-    playerScore += 1;
-    return "You Won! Scissors beats Paper";
+    result = "You Lose! Rock beats Scissors";
   }
+  resultDisplay.textContent = result;
+  userScoreDisplay.textContent = playerScore;
+  computerScoreDisplay.textContent = computerScore;
 }
-
-function game() {
-  for (let count = 1; count <= 5; count++) {
-    console.log(`Current Round : ${count}`);
-    computerSelection = getComputerChoice();
-    playerSelection = prompt("Enter your choice: Rock, Paper or Scissors");
-    console.log(playRound(playerSelection, computerSelection));
-
-    console.log(`Player Score: ${playerScore}`);
-    console.log(`Computer Score: ${computerScore}`);
-  }
-}
-
-function declareWinner() {
-  if (playerScore > computerScore) return "Good game, You are the Winner!!";
-  else if (playerScore < computerScore)
-    return "Bad Luck, Computer is the Winner!!";
-  else return "The game was a TIE.";
-}
-
-//Let's Play
-game();
-console.log(declareWinner());
